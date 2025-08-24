@@ -16,13 +16,13 @@ pipeline {
 
         stage('Rodar testes') {
             steps {
-                bat 'npx cypress run --reporter mochawesome'
+                bat 'npx cypress run --reporter cypress-mochawesome-reporter'
             }
         }
 
         stage('Arquivar evidências') {
             steps {
-                archiveArtifacts artifacts: 'cypress/reports/*.html', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'cypress/reports/**/*', allowEmptyArchive: true
             }
         }
     }
