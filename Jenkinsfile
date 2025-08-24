@@ -18,8 +18,8 @@ pipeline {
 
         stage('Rodar testes de API') {
             steps {
-                echo 'Executando testes de API com Cypress...'
-                bat 'npx cypress run'
+                echo 'Executando testes de API com Cypress e Mochawesome...'
+                bat 'npx cypress run --reporter mochawesome'
             }
         }
 
