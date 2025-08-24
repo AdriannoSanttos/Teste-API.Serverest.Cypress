@@ -12,17 +12,7 @@ module.exports = defineConfig({
       json: true
     },
     setupNodeEvents(on, config) {
-      
-      on('after:spec', (spec, results) => {
-        if (results && results.tests) {
-          results.tests.forEach(test => {
-            if (test.state === 'passed') {
-              cy.screenshot(test.title.replace(/ /g, "_"))
-            }
-          })
-        }
-      });
+     
     },
   },
 });
-

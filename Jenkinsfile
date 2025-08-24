@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout do repositório') {
             steps {
                 echo 'Clonando repositório...'
-                git branch: 'main', url: 'https://github.com/AdriannoSanttos/Teste-API.Serverest.Cypress.git'
+                git url: 'https://github.com/AdriannoSanttos/Teste-API.Serverest.Cypress.git', branch: 'main'
             }
         }
 
@@ -25,9 +25,8 @@ pipeline {
 
         stage('Arquivar evidências') {
             steps {
-                echo 'Arquivando relatórios e screenshots...'
-                archiveArtifacts artifacts: 'cypress/reports/**/*', allowEmptyArchive: true
-                archiveArtifacts artifacts: 'cypress/screenshots/**/*', allowEmptyArchive: true
+                echo 'Arquivando relatórios...'
+                archiveArtifacts artifacts: 'cypress/reports/*.html', allowEmptyArchive: true
             }
         }
     }
