@@ -1,7 +1,8 @@
 pipeline {
     agent any
+
     stages {
-        stage('Checkout') {
+        stage('Checkout do repositório') {
             steps {
                 git branch: 'main', url: 'https://github.com/AdriannoSanttos/Teste-API.Serverest.Cypress.git'
             }
@@ -15,7 +16,14 @@ pipeline {
 
         stage('Rodar testes de API') {
             steps {
-                bat 'npx cypress run --spec "cypress/e2e/api/**/*.cy.js"'
+                bat 'npx cypress run'
+            }
+        }
+
+        stage('Arquivar evidências') {
+            steps {
+                archiveArtifacts artifacts: 'cypress/reports/**/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'cypress/screenshots/**/*', allowEmptyArchive: true
             }
         }
     }
